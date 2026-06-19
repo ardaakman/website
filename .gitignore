@@ -10,3 +10,4 @@ package-lock.json
 
 .vscode/
 /.playwright-mcp/
+/.netlify/
