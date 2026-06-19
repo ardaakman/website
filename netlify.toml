@@ -1,0 +1,5 @@
+# Serve the static avi.dog-style page in /site (no build step needed).
+# This overrides any build command/publish dir configured in the Netlify UI.
+[build]
+  command = "echo 'Static site — nothing to build'"
+  publish = "site"

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Arda Akman — software engineer building backend systems, infrastructure, and developer tooling." />
+  <meta property="og:title" content="Arda Akman" />
+  <meta property="og:description" content="Software engineer building backend systems, infrastructure, and developer tooling." />
+  <meta property="og:image" content="/profile.jpg" />
+  <meta property="og:type" content="website" />
+  <title>Arda Akman</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>" />
+  <script>
+    // Set theme before paint to avoid flash
+    const theme = localStorage.getItem('theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #444444;
+      --text-tertiary: #6b6b6b;
+      --text-quaternary: #9a9a9a;
+      --border: #ececec;
+      --border-secondary: #e4e4e4;
+      --accent: #1a1a1a;
+    }
+    [data-theme="dark"] {
+      --bg: #0d0d0d;
+      --text-primary: #ededed;
+      --text-secondary: #c4c4c4;
+      --text-tertiary: #8f8f8f;
+      --text-quaternary: #5f5f5f;
+      --border: #1f1f1f;
+      --border-secondary: #232323;
+      --accent: #ededed;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      font-size: 15px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    a { color: inherit; }
+    header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .header-right { display: flex; align-items: center; gap: 22px; }
+    nav a {
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--text-tertiary);
+      margin-left: 18px;
+      transition: color 0.15s ease;
+    }
+    nav a:first-child { margin-left: 0; }
+    nav a:hover { color: var(--text-primary); }
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      font-size: 15px;
+      padding: 0;
+      line-height: 1;
+    }
+    .theme-toggle:hover { color: var(--text-primary); }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 24px 0;
+    }
+    .profile { margin-bottom: 56px; }
+    .profile img {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 22px;
+      display: block;
+    }
+    .profile p {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 0 12px 0;
+    }
+    .profile p:last-child { margin-bottom: 0; }
+    .section { margin-bottom: 52px; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-tertiary);
+      margin: 0 0 22px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    /* Experience list */
+    .item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-secondary);
+    }
+    .item:last-child { border-bottom: none; }
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .item-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .item-title a { text-decoration: none; }
+    .item-title a:hover { text-decoration: underline; }
+    .item-date {
+      font-size: 13px;
+      color: var(--text-quaternary);
+      white-space: nowrap;
+    }
+    .item-org {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      margin: 2px 0 8px 0;
+    }
+    .item-desc {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      line-height: 1.55;
+      margin: 0;
+    }
+    /* Projects grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      text-decoration: none;
+      border: 1px solid var(--border-secondary);
+      border-radius: 8px;
+      padding: 20px;
+      display: block;
+      transition: border-color 0.15s ease;
+    }
+    .card:hover { border-color: var(--text-quaternary); }
+    .card h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 0 0 8px 0;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      color: var(--text-tertiary);
+      line-height: 1.5;
+      font-size: 13.5px;
+      margin: 0 0 12px 0;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px;
+      color: var(--text-quaternary);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .pill {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      border: 1px solid var(--border-secondary);
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin: 0 6px 8px 0;
+    }
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 56px;
+      color: var(--text-tertiary);
+      font-size: 14px;
+      border-top: 1px solid var(--border-secondary);
+      margin-top: 24px;
+    }
+    footer .where { margin-bottom: 8px; }
+    footer a {
+      color: var(--text-tertiary);
+      text-decoration: none;
+      margin-right: 16px;
+      transition: color 0.15s ease;
+    }
+    footer a:hover { color: var(--text-primary); }
+    @media (min-width: 640px) {
+      .profile img { width: 96px; height: 96px; }
+      .profile p { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">ARDA AKMAN</a>
+    <div class="header-right">
+      <nav>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="https://drive.google.com/file/d/1_OPVqMNgHcAq8o7cLJSuhgCpKztaqPrR/view" target="_blank" rel="noopener">Resume</a>
+      </nav>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-icon">○</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="profile">
+      <img src="/profile.jpg" alt="Arda Akman" />
+      <p>I'm Arda. I build backend systems, infrastructure, and developer tooling.</p>
+      <p>I'm currently at <strong>Thunder Compute</strong> in the Bay Area. Before that I was on the early team at <strong>Delve (YC W24)</strong> and a backend engineer at <strong>Sigma Computing</strong>. I studied Computer Science at UC Berkeley, where I also spent a couple of years teaching CS 61C to a few hundred students at a time.</p>
+      <p>I'm a history buff who likes building things that are meant for scale. I speak English, Turkish, German, and some sign language, and I've worked with the TIED foundation on apps that help hearing-impaired children learn sign language.</p>
+    </section>
+
+    <section class="section" id="experience">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://thundercompute.com" target="_blank" rel="noopener">Thunder Compute</a></h3>
+          <span class="item-date">Present</span>
+        </div>
+        <p class="item-org">Software Engineer · San Francisco Bay Area</p>
+        <p class="item-desc">Building cloud GPU infrastructure that makes accelerated compute cheap and instant. Currently hiring.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title">Delve <span style="color:var(--text-quaternary);font-weight:400;">(YC W24)</span></h3>
+          <span class="item-date">2024 – 2025</span>
+        </div>
+        <p class="item-org">Early Team · San Francisco</p>
+        <p class="item-desc">Joined an early-stage team building compliance automation — one of the most intense, rewarding, and fun chapters so far.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://www.sigmacomputing.com/" target="_blank" rel="noopener">Sigma Computing</a></h3>
+          <span class="item-date">Jun 2024 – 2024</span>
+        </div>
+        <p class="item-org">Backend Engineer · Data Governance</p>
+        <p class="item-desc">Led projects around authentication (OAuth, SAML), permissions, auditing, and security. Built and hardened the public API and customer audit data pipelines with dbt for enterprise customers like banks and financial institutions. AWS, MySQL, Snowflake/Snowpark, TypeScript, Golang, React, Kubernetes.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title">Sigma Computing</h3>
+          <span class="item-date">Jun – Aug 2023</span>
+        </div>
+        <p class="item-org">Full-Stack Engineer Intern · Data Exploration</p>
+        <p class="item-desc">Built the "Lineage" feature — a graph interface (control, branch, and focus views) making the product's data relationships visible and interactive. Ran beta tests with volunteer customers and observed 1,000+ user interactions in the first weeks of rollout. TypeScript, GraphQL, react-flow-renderer.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://eecs.berkeley.edu/" target="_blank" rel="noopener">UC Berkeley</a></h3>
+          <span class="item-date">Jun 2022 – Dec 2023</span>
+        </div>
+        <p class="item-org">Teaching Assistant · CS 61C (Computer Architecture)</p>
+        <p class="item-desc">TA'd a class with 800+ students some semesters. Led discussions of up to 40 students, ran office hours, led and mentored a team of course tutors, and helped prepare, vet, grade, and proctor exams.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://www.zendesk.com/" target="_blank" rel="noopener">Zendesk</a></h3>
+          <span class="item-date">Jun – Aug 2022</span>
+        </div>
+        <p class="item-org">Full-Stack Engineer Intern · Product Accessibility</p>
+        <p class="item-desc">Built a full-stack dashboard that audits the company's products against accessibility standards using Cypress, Puppeteer, and Evinced, hosted on AWS. Set up automation tooling and an accessible GUI on top of it. React, Node.js, TypeScript.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://entrepreneurship.columbia.edu/startup/changing-room/" target="_blank" rel="noopener">Changing Room</a></h3>
+          <span class="item-date">Jan – May 2022</span>
+        </div>
+        <p class="item-org">Data Engineer Intern</p>
+        <p class="item-desc">Built pipelines feeding a sustainable clothing search algorithm — efficient Python/Selenium scrapers on Docker schedules, plus pandas/scikit-learn models scoring item sustainability.</p>
+      </div>
+
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title"><a href="https://getir.com/us/" target="_blank" rel="noopener">Getir</a></h3>
+          <span class="item-date">Jul – Aug 2021</span>
+        </div>
+        <p class="item-org">Data Science Intern</p>
+        <p class="item-desc">Worked with NLP tools (BERT via Hugging Face) on customer review data — building pipelines plus clustering and sentiment/keyword models to make reviews easier to analyze.</p>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid">
+        <a class="card" href="https://www.useobvious.ai" target="_blank" rel="noopener">
+          <h3>Obvious AI</h3>
+          <p>Find your style faster — understands what you want and surfaces similar matches across price brackets and vibes.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">PyTorch</span><span class="tag">BaseTen</span><span class="tag">EC2</span></div>
+        </a>
+        <a class="card" href="https://owlo.co" target="_blank" rel="noopener">
+          <h3>Owlo</h3>
+          <p>Web app helping blue-collar employees with training, so middle managers handle turnover and time utilization better.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Python</span></div>
+        </a>
+        <a class="card" href="https://github.com/ardaakman/blueberryai" target="_blank" rel="noopener">
+          <h3>Blueberry AI</h3>
+          <p>Give it context and it handles your calls with customer agents for you, instead of spending your own time on hold.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">Twilio</span><span class="tag">OpenAI</span><span class="tag">Postgres</span></div>
+        </a>
+        <a class="card" href="https://github.com/Eclipse-Sports/f1dashboard" target="_blank" rel="noopener">
+          <h3>F1 Analysis Dashboard</h3>
+          <p>Dashboard for Formula 1 race analysis — scrapes F1 endpoints to collect radio messages and more.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">React</span><span class="tag">JavaScript</span></div>
+        </a>
+        <a class="card" href="https://github.com/ardaakman" target="_blank" rel="noopener">
+          <h3>Lineage — Sigma</h3>
+          <p>Graph dashboard visualizing Sigma Computing's product data relationships in an understandable, interactive way.</p>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">GraphQL</span><span class="tag">react-flow</span><span class="tag">Zustand</span></div>
+        </a>
+        <a class="card" href="https://github.com/ardaakman" target="_blank" rel="noopener">
+          <h3>More on GitHub →</h3>
+          <p>Other experiments and noteworthy projects, including a product accessibility audit tool.</p>
+          <div class="tags"><span class="tag">@ardaakman</span></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Education &amp; Recognition</h2>
+      <div class="item">
+        <div class="item-head">
+          <h3 class="item-title">University of California, Berkeley</h3>
+          <span class="item-date">2020 – 2024</span>
+        </div>
+        <p class="item-org">B.S. Computer Science</p>
+        <p class="item-desc">CS 61C Teaching Assistant · Mobile Developers at Berkeley · AI Entrepreneurs at Berkeley · Computer Science Mentors · Eta Kappa Nu.</p>
+      </div>
+      <div style="padding-top:20px;">
+        <span class="pill">Top 25 Most Successful Turkish Graduates, 2024</span>
+        <span class="pill">English</span>
+        <span class="pill">Türkçe</span>
+        <span class="pill">Deutsch</span>
+        <span class="pill">Sign Language</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="where">Berkeley / San Francisco Bay Area</div>
+    <div>
+      <a href="mailto:arda.akman@berkeley.edu">Email</a>
+      <a href="https://github.com/ardaakman" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/arda-akman/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/_ardaakmann" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    function sync() {
+      icon.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '●' : '○';
+    }
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      sync();
+    });
+    sync();
+  </script>
+</body>
+</html>
