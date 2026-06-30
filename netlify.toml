@@ -1,5 +1,4 @@
-# Serve the static avi.dog-style page in /site (no build step needed).
-# This overrides any build command/publish dir configured in the Netlify UI.
+# Generate the blog from content/blog/*.md, then serve the static /site dir.
 [build]
-  command = "echo 'Static site — nothing to build'"
+  command = "node build-blog.js"
   publish = "site"

@@ -3,18 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Arda Akman — software engineer building backend systems, infrastructure, and developer tooling." />
-  <meta property="og:title" content="Arda Akman" />
-  <meta property="og:description" content="Software engineer building backend systems, infrastructure, and developer tooling." />
-  <meta property="og:image" content="/profile.jpg" />
-  <meta property="og:type" content="website" />
-  <title>Arda Akman</title>
+  <meta name="description" content="Writing by Arda Akman." />
+  <title>Blog — Arda Akman</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>A</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;500;600&display=swap" rel="stylesheet" />
   <script>
-    // Default to light; respect a saved choice if the visitor toggled before.
     const theme = localStorage.getItem('theme') || 'light';
     if (theme === 'dark') document.documentElement.classList.add('dark-mode');
   </script>
@@ -58,7 +53,6 @@
       padding: 40px 0 64px;
       animation: fadeIn 0.45s ease-out both;
     }
-
     header {
       display: flex;
       justify-content: space-between;
@@ -74,12 +68,7 @@
       font-weight: 500;
       letter-spacing: 0.03em;
     }
-    nav {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-    }
+    nav { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 18px; }
     .nav-link {
       color: var(--muted);
       font-size: 14px;
@@ -88,7 +77,7 @@
       border-bottom: 1px solid transparent;
       padding-bottom: 2px;
     }
-    .nav-link:hover { color: var(--text); border-bottom-color: currentColor; }
+    .nav-link:hover, .nav-link.active { color: var(--text); border-bottom-color: currentColor; }
 
     .theme-toggle {
       width: 34px; height: 34px;
@@ -96,9 +85,7 @@
       border-radius: 999px;
       background: transparent;
       color: var(--text);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline-flex; align-items: center; justify-content: center;
       cursor: pointer;
       transition: border-color 0.2s ease, transform 0.2s ease;
     }
@@ -110,32 +97,41 @@
     html:not(.dark-mode) .moon-icon { display: block; }
 
     main { padding-top: 44px; }
-    .greeting {
-      font-family: var(--display);
-      font-size: clamp(44px, 6vw, 60px);
-      font-weight: 400;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-    }
-    .bio p { color: var(--muted); margin-bottom: 18px; max-width: 60ch; }
-    .bio p:last-child { margin-bottom: 0; }
-    .bio strong { color: var(--text); font-weight: 600; }
-    .bio a { color: var(--text); border-bottom: 1px solid var(--border); }
-    .bio a:hover { border-bottom-color: currentColor; }
+    h1 { font-family: var(--display); font-size: clamp(36px, 5vw, 46px); font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 8px; }
+    h2 { font-family: var(--display); font-size: 28px; font-weight: 500; margin: 36px 0 10px; }
+    h3 { font-family: var(--display); font-size: 23px; font-weight: 500; margin: 28px 0 8px; }
+    .lede { color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+    .post-date { color: var(--muted); font-family: var(--mono); font-size: 13px; margin-bottom: 40px; }
+
+    article p { color: var(--muted); margin-bottom: 20px; }
+    article ul, article ol { color: var(--muted); padding-left: 24px; margin-bottom: 20px; }
+    article li { margin: 6px 0; }
+    article a { color: var(--text); border-bottom: 1px solid var(--border); }
+    article a:hover { border-bottom-color: currentColor; }
+    article strong { color: var(--text); font-weight: 600; }
+    article img { max-width: 100%; border-radius: 6px; }
+    blockquote { border-left: 2px solid var(--text); padding-left: 18px; color: var(--muted); margin-bottom: 20px; }
+    code { font-family: var(--mono); font-size: 0.85em; background: var(--code-bg); padding: 2px 5px; border-radius: 4px; }
+    pre { background: var(--code-bg); border-radius: 8px; padding: 16px; overflow-x: auto; margin-bottom: 20px; }
+    pre code { background: none; padding: 0; font-size: 13.5px; line-height: 1.6; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+    .blog-list { list-style: none; }
+    .blog-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .blog-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .blog-title { font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.2; }
+    .blog-title a:hover { color: var(--muted); }
+    .blog-meta { color: var(--muted); font-family: var(--mono); font-size: 13px; margin-top: 2px; }
+    .empty { color: var(--muted); }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .container { animation: none; }
-      * { transition: none !important; }
-    }
+    @media (prefers-reduced-motion: reduce) { .container { animation: none; } * { transition: none !important; } }
     @media screen and (max-width: 600px) {
       .site-title { font-size: 26px; }
-      .greeting { font-size: 38px; }
-      .bio p { font-size: 16px; }
+      h1 { font-size: 32px; }
     }
   </style>
 </head>
@@ -144,7 +140,7 @@
     <header>
       <a href="/" class="site-title">arda akman</a>
       <nav>
-        <a class="nav-link" href="/blog/">blog</a>
+        <a class="nav-link active" href="/blog/">blog</a>
         <a class="nav-link" href="https://github.com/ardaakman" target="_blank" rel="noopener">github</a>
         <a class="nav-link" href="https://www.linkedin.com/in/arda-akman/" target="_blank" rel="noopener">linkedin</a>
         <a class="nav-link" href="https://x.com/arda_akmann" target="_blank" rel="noopener">twitter</a>
@@ -154,16 +150,12 @@
         </button>
       </nav>
     </header>
-
     <main>
-      <h1 class="greeting">hi, i'm arda.</h1>
-      <div class="bio">
-        <p>I build backend systems, infrastructure, and developer tooling.</p>
-        <p>Currently at <a href="https://thundercompute.com" target="_blank" rel="noopener">Thunder Compute</a>. Previously a founding engineer at <strong>Delve (YC&nbsp;W24)</strong> and a backend engineer at <a href="https://www.sigmacomputing.com/" target="_blank" rel="noopener">Sigma Computing</a>. Studied CS at Berkeley.</p>
-      </div>
+      <h1>blog</h1>
+      <p class="lede">Notes on backend systems, infra, and whatever I'm building.</p>
+      <ul class="blog-list"><li class="blog-item"><h2 class="blog-title"><a href="/blog/hello-world.html">Hello, world</a></h2><div class="blog-meta">June 29, 2026</div></li></ul>
     </main>
   </div>
-
   <script>
     const btn = document.getElementById('theme-toggle');
     btn.addEventListener('click', () => {
