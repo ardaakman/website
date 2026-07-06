@@ -4,7 +4,7 @@ date: 2026-07-05
 ---
 Hello, world.
 
-This is my first post in this folder, and my first ever blog post in general. I will probably post about more "systems"-relevant work, but I bumped into Project Euler this weekend (again — I remember bumping into it during undergrad) and thought it was interesting.
+This is my first post in this folder, and my first ever blog post in general. I will probably post about more "systems"-relevant work, but I bumped into Project Euler this weekend (bumped into it again to be exact; I remember bumping into it during undergrad) and thought it was interesting.
 
 I ended up solving the first 12 problems. I thought problem #12 was a good place to start my blog, mainly because it took me back to simple arithmetic, which I enjoyed. I hope what's below is relevant, although it might not be inherently valuable in an age where an LLM can probably one-shot this problem with ease. Still, all the code for the problem is handwritten, apart from formatting the docstring in the code after the first go. Here is my shot at a first blog post — potentially low effort compared to the future ones I'm planning, which I hope will each be more educational.
 
