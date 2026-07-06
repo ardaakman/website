@@ -116,12 +116,24 @@
     pre code { background: none; padding: 0; font-size: 13.5px; line-height: 1.6; }
     hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
 
-    .blog-list { list-style: none; }
-    .blog-item { padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
-    .blog-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .blog-title { font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.2; }
-    .blog-title a:hover { color: var(--muted); }
-    .blog-meta { color: var(--muted); font-family: var(--mono); font-size: 13px; margin-top: 2px; }
+    .crumbs { color: var(--muted); font-family: var(--mono); font-size: 13px; margin-bottom: 32px; }
+    .crumbs a { border-bottom: 1px solid transparent; padding-bottom: 1px; }
+    .crumbs a:hover { color: var(--text); border-bottom-color: currentColor; }
+    .fs-list { list-style: none; font-family: var(--mono); font-size: 15px; }
+    .fs-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 12px 2px;
+      border-bottom: 1px solid var(--border);
+    }
+    .fs-item a { display: inline-flex; align-items: baseline; gap: 10px; min-width: 0; }
+    .fs-item a:hover .fs-name { color: var(--muted); }
+    .fs-icon { color: var(--muted); font-size: 13px; flex-shrink: 0; }
+    .fs-name { overflow-wrap: anywhere; }
+    .fs-dir .fs-name::after { content: '/'; color: var(--muted); }
+    .fs-meta { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
     .empty { color: var(--muted); }
 
     @keyframes fadeIn {
@@ -151,9 +163,10 @@
       </nav>
     </header>
     <main>
+      
       <h1>blog</h1>
       <p class="lede">Notes on backend systems, infra, and whatever I'm building.</p>
-      <ul class="blog-list"><li class="blog-item"><h2 class="blog-title"><a href="/blog/hello-world.html">Hello, world</a></h2><div class="blog-meta">June 29, 2026</div></li></ul>
+      <p class="empty">No posts yet — coming soon.</p>
     </main>
   </div>
   <script>

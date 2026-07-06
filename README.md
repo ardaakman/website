@@ -10,15 +10,19 @@ site/               # what Netlify publishes (static output)
   index.html        #   homepage (edit directly)
   profile.jpg
   blog/             #   GENERATED — do not edit by hand
-content/blog/*.md   # blog posts, written in markdown (the source of truth)
-build-blog.js       # zero-dependency generator: content/blog/*.md -> site/blog/*.html
+content/blog/       # blog posts in markdown (the source of truth); folders allowed
+build-blog.js       # zero-dependency generator: content/blog/ -> site/blog/
 netlify.toml        # build = `node build-blog.js`, publish = `site`
 ```
 
 ## Writing a post
 
-1. Create a markdown file in `content/blog/`, e.g. `content/blog/my-post.md`.
-   The filename (without `.md`) becomes the URL slug: `/blog/my-post.html`.
+1. Create a markdown file anywhere under `content/blog/`, using folders to
+   organize: `content/blog/my-post.md` -> `/blog/my-post.html`, and
+   `content/blog/robotics/notes.md` -> `/blog/robotics/notes.html`.
+   The blog renders as a simple file browser: each folder gets its own listing
+   page with breadcrumbs. `site/blog/` is wiped and regenerated on every build,
+   so deleting a markdown file or folder removes its pages.
 2. Start it with frontmatter:
 
    ```markdown
