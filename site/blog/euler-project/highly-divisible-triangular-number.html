@@ -167,17 +167,23 @@
         <p class="crumbs"><a href="/blog/">blog</a> / <a href="/blog/euler-project/">euler-project</a> / highly-divisible-triangular-number</p>
         <h1>Euler 12 — Highly Divisible Triangular Number</h1>
         <p class="post-date">July 5, 2026</p>
-        <p>First post in this folder: I've been working through <a href="https://projecteuler.net" target="_blank" rel="noopener">Project Euler</a> problems, and I want to write up the ones where the obvious solution isn't the right one. <a href="https://projecteuler.net/problem=12" target="_blank" rel="noopener">Problem 12</a> is a good place to start.</p>
+        <p>Hello, world.</p>
+<p>This is my first post in this folder, and my first ever blog post in general. I will probably post about more "systems"-relevant work, but I bumped into Project Euler this weekend (again — I remember bumping into it during undergrad) and thought it was interesting.</p>
+<p>I ended up solving the first 12 problems. I thought problem #12 was a good place to start my blog, mainly because it took me back to simple arithmetic, which I enjoyed. I hope what's below is relevant, although it might not be inherently valuable in an age where an LLM can probably one-shot this problem with ease. Still, all the code for the problem is handwritten, apart from formatting the docstring in the code after the first go. Here is my shot at a first blog post — potentially low effort compared to the future ones I'm planning, which I hope will each be more educational.</p>
 <h2>The problem</h2>
-<p>Triangle numbers are what you get by summing the natural numbers: the 7th triangle number is 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28. The question: <strong>what is the first triangle number with more than five hundred divisors?</strong></p>
-<h2>The naive approach, and why it hurts</h2>
+<p>Triangle numbers are what you get by summing the natural numbers: the 7th triangle number is 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28. So T(7) = 28 (and I will use this notation for the rest of the post). The question at hand: <strong>what is the first triangle number with more than five hundred divisors?</strong></p>
+<h2>The naive approach</h2>
 <p>The nth triangle number is <code>T(n) = n * (n + 1) // 2</code> (one of <code>n</code>, <code>n + 1</code> is always even, so the division is exact). The direct approach is to walk up <code>n</code>, factor each <code>T(n)</code>, and stop when the divisor count passes 500.</p>
-<p>The catch is that <code>T(n)</code> grows quadratically in <code>n</code>. Trial-division factoring costs roughly the square root of the number you're factoring, so factoring <code>T(n)</code> costs on the order of <code>n</code> — and you're doing that for every step. It adds up fast.</p>
+<p>The catch is that <code>T(n)</code> grows quadratically in <code>n</code>. Trial-division factoring costs roughly the square root of the number you're factoring, so factoring <code>T(n)</code> costs on the order of <code>n</code> — and you're doing that for every step. It adds up.</p>
 <h2>Splitting into coprime factors</h2>
 <p>The trick is to never factor <code>T(n)</code> at all. Split it into two pieces, with one of them absorbing the <code>/2</code>:</p>
 <ul><li><code>n</code> even: <code>a = n // 2</code>, <code>b = n + 1</code></li><li><code>n</code> odd: <code>a = n</code>, <code>b = (n + 1) // 2</code></li></ul>
 <p>These are consecutive-ish numbers, so <code>gcd(a, b) = 1</code>. And the divisor-count function <code>d</code> is multiplicative over coprime factors:</p>
 <pre><code>d(T(n)) = d(a) * d(b)</code></pre>
+<p>Why is this the case? One important thing to realise first is how to calculate <code>d(m)</code>, the total number of divisors of <code>m</code>: find the prime factorization, add 1 to each prime's exponent, and multiply those together. The reason is that a unique divisor can use anywhere from zero up to the full count of each prime factor — the extra 1 covers the zero case. An example with 120 (not a T(n), but the same rule applies):</p>
+<pre><code>120 = (2**3) * (3**1) * (5**1)
+d(120) = (3+1) * (1+1) * (1+1) = 16</code></pre>
+<p>Again, we add 1 for the case where a divisor skips a prime entirely (3 * 5 = 15 is a divisor of 120 that does not use 2). And because <code>a</code> and <code>b</code> share no prime factors, their prime factorizations stack side by side, so the divisor counts simply multiply: <code>d(a * b) = d(a) * d(b)</code>.</p>
 <p>Now we only ever factor numbers of size ~<code>n</code> instead of ~<code>n²</code>. That's the whole speedup.</p>
 <h2>Bonus: consecutive steps share work</h2>
 <p>There's a second, smaller win hiding in the split: the <code>b</code> at step <code>n</code> shows up again as the <code>a</code> at step <code>n + 1</code> when <code>n</code> is even. Without doing anything, we'd factor the same number twice across consecutive iterations. A cache of divisor counts keyed by value makes each factorization happen once.</p>
@@ -220,7 +226,7 @@ def solve(limit=500):
             return a * b
 
         n += 1</code></pre>
-<p>The divisor counting itself is standard: factor with trial division, and for a prime factorization <code>p1^e1 * p2^e2 * ...</code> the divisor count is <code>(e1 + 1) * (e2 + 1) * ...</code>, since a divisor picks each prime's exponent independently.</p>
+<p>The divisor counting in <code>get_divisor_count</code> is exactly the scheme above: trial division to get each prime's exponent, then multiply the <code>(exponent + 1)</code>s together.</p>
 <h2>Result</h2>
 <p>The answer is <strong>76576500</strong>, and it lands in about 0.4 seconds on my machine — with <code>d(76576500) = 576</code> divisors, the first to break 500.</p>
       </article>
