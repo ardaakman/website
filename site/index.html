@@ -160,11 +160,24 @@
       <div class="bio">
         <p>I build backend systems, infrastructure, and developer tooling.</p>
         <p>Currently at <a href="https://thundercompute.com" target="_blank" rel="noopener">Thunder Compute</a>. Previously a founding engineer at <strong>Delve (YC&nbsp;W24)</strong> and a backend engineer at <a href="https://www.sigmacomputing.com/" target="_blank" rel="noopener">Sigma Computing</a>. Studied CS at Berkeley.</p>
+        <p>I like history a lot — <em>The Crusades Through Arab Eyes</em> is one of my favorite books. I ponder a bunch, and lately I've been looking more into robots.</p>
+        <p>Reach out if you want to chat, or if you have good learning sources in robotics. Feel free to <a href="https://x.com/arda_akmann" target="_blank" rel="noopener">DM me on Twitter</a>.</p>
       </div>
     </main>
   </div>
 
   <script>
+    // Clean up the service worker left behind by the old Gatsby site
+    // (gatsby-plugin-offline), which serves stale cached versions.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((regs) => {
+        regs.forEach((reg) => reg.unregister());
+      });
+      if (window.caches) {
+        caches.keys().then((keys) => keys.forEach((key) => caches.delete(key)));
+      }
+    }
+
     const btn = document.getElementById('theme-toggle');
     btn.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark-mode');
