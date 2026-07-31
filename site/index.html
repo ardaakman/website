@@ -124,6 +124,20 @@
     .bio a { color: var(--text); border-bottom: 1px solid var(--border); }
     .bio a:hover { border-bottom-color: currentColor; }
 
+    .projects { margin-top: 44px; }
+    .projects h2 {
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
+    }
+    .projects ul { list-style: none; }
+    .projects li { color: var(--muted); margin-bottom: 12px; max-width: 60ch; }
+    .projects a { color: var(--text); border-bottom: 1px solid var(--border); }
+    .projects a:hover { border-bottom-color: currentColor; }
+    .projects .source { font-size: 14px; color: var(--muted); }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
@@ -163,6 +177,18 @@
         <p>I like history a lot — <em>The Crusades Through Arab Eyes</em> is one of my favorite books. I ponder a bunch, and lately I've been looking more into robots.</p>
         <p>Reach out if you want to chat, or if you have good learning sources in robotics. Feel free to <a href="https://x.com/arda_akmann" target="_blank" rel="noopener">DM me on Twitter</a>.</p>
       </div>
+
+      <section class="projects">
+        <h2>projects</h2>
+        <ul>
+          <li>
+            <a href="https://sf-court-map.netlify.app" target="_blank" rel="noopener">sf court map</a>
+            — live map of San Francisco's public tennis &amp; pickleball courts, showing open booking
+            slots for the week ahead with direct links to book each court.
+            <a class="source" href="https://github.com/ardaakman/sf-court-map" target="_blank" rel="noopener">source</a>
+          </li>
+        </ul>
+      </section>
     </main>
   </div>
 
